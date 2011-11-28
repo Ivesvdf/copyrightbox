@@ -139,6 +139,7 @@ produces:
 \end{center}
 
 \section{Notes}
+\subsection{Changing the Font}
 It's possible to change every aspect of the font used in the copyright message
 by renewing the command \cmd{\CRB$@$setcopyrightfont}, for example: 
 
@@ -166,6 +167,61 @@ can be placed anywhere in your .tex file and will generate the copyright notice 
 
 \copyrightbox[r] { \tikz \filldraw[fill=green] (0,0) circle (2); }
 {Image created by the author.}
+\end{center}
+
+\subsection{Justification}
+Although it's not exactly recommended, it is possible to place relatively
+large amounts of text near images. Long amounts of text are usually nicer to
+look at when justified, and to do so \cmd{\renewcommand}
+\cmd{\CRB@setcopyrightparagraphstyle} to something other than
+\cmd{\raggedright}, which is the default. 
+
+Place
+
+\begin{verbatim}
+\makeatletter
+\renewcommand{\CRB@setcopyrightparagraphstyle}{%
+% Return to justifying text
+\setlength{\rightskip}{0pt}
+\setlength{\leftskip}{0pt}
+}
+
+\makeatother
+\begin{center}
+	\copyrightbox[r]
+		{\includegraphics[scale=0.5]{coin}}
+      {This here image was put in the public domain some time ago by the U.S. Mint.}
+\end{center}
+\end{verbatim}
+
+anywhere in your .tex file to produce:
+\makeatletter
+\renewcommand{\CRB@setcopyrightparagraphstyle}{%
+% Return to justifying text
+\setlength{\rightskip}{0pt}
+\setlength{\leftskip}{0pt}
+}
+
+\makeatother
+\begin{center}
+	\copyrightbox[r]
+		{\includegraphics[scale=0.5]{coin}}
+      {This here image was put in the public domain some time ago by the U.S. Mint.}
+\end{center}
+
+instead of 
+
+\makeatletter
+\renewcommand{\CRB@setcopyrightparagraphstyle}{%
+% Return to justifying text
+\raggedright
+}
+
+\makeatother
+\begin{center}
+	\copyrightbox[r]
+		{\includegraphics[scale=0.5]{coin}}
+      {This here image was put in the public domain some time ago by the U.S. Mint.}
 \end{center}
 
 \section{Bugs and Suggestions}
