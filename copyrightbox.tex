@@ -139,6 +139,7 @@ produces:
 \end{center}
 
 \section{Notes}
+
 \subsection{Changing the Font}
 It's possible to change every aspect of the font used in the copyright message
 by renewing the command \cmd{\CRB$@$setcopyrightfont}, for example: 
@@ -162,6 +163,32 @@ can be placed anywhere in your .tex file and will generate the copyright notice 
 	\footnotesize 
 	\color{red!33}
 	\sc
+}
+\makeatother
+
+\copyrightbox[r] { \tikz \filldraw[fill=green] (0,0) circle (2); }
+{Image created by the author.}
+\end{center}
+
+Ofcourse, it's also possible to select a font using the New Font Selection
+System in \LaTeX{}2e, for example, to select Helvetica\footnote{This font might not be available on your system. } size
+4:
+
+\begin{verbatim}
+\makeatletter
+\renewcommand{\CRB@setcopyrightfont}{%
+\fontfamily{phv}\fontsize{4}{4}\selectfont
+}
+\makeatother
+
+\copyrightbox[r] { \tikz \filldraw[fill=green] (0,0) circle (2); }
+{Image created by the author.}
+\end{verbatim}
+
+\begin{center}
+\makeatletter
+\renewcommand{\CRB@setcopyrightfont}{%
+\fontfamily{phv}\fontsize{4}{4}\selectfont
 }
 \makeatother
 
