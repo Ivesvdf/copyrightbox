@@ -1,0 +1,25 @@
+C O P Y R I G H T B O X . S T Y    ver 0.1  (Nov 27, 2011)
+
+Copyright (C) 2010-2011   
+
+Thomas Fischer       <thomas.fischer@t-fischer.net> 
+     and
+Ives van der Flaas   <ives.vdf@gmail.com>
+
+This software is released under the terms of the LaTeX Project 
+public license.
+
+For a full manual, see copyrightbox.pdf, but the short version is
+
+\copyrightbox[<placement>]{<image>}{<text>}
+
+where <placement> is either
+ r    (Default) Text to the right of the image
+ l    Text to the left of the image
+ b    Text below the image
+
+which puts <text> positioned according to <placement> near <image>. E.g.
+
+\copyrightbox[b]
+		{\includegraphics[scale=0.5]{coin}}
+		{Image put in the public domain by the U.S. Mint.}
