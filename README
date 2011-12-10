@@ -9,6 +9,9 @@ Ives van der Flaas   <ives.vdf@gmail.com>
 This software is released under the terms of the LaTeX Project 
 public license.
 
+The copyrightbox package defines a command that places a copyright notice near
+an image.
+
 For a full manual, see copyrightbox.pdf, but the short version is
 
 \copyrightbox[<placement>]{<image>}{<text>}
