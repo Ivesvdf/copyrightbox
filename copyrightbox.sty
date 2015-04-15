@@ -1,6 +1,7 @@
-%  C O P Y R I G H T B O X . S T Y    ver 0.1  (Nov 27, 2011)
+%  C O P Y R I G H T B O X . S T Y    ver 0.1a  (Apr 15, 2015)
 %
 %  Copyright (C) 2010-2011   
+%  Modifications 2015 Johannes Böttcher  <johannesbottcher@gmail.com>
 %
 %  Thomas Fischer       <thomas.fischer@t-fischer.net> 
 %       and
@@ -9,6 +10,9 @@
 %  This software is released under the terms of the LaTeX Project 
 %  public license.
 %
+
+
+\ProvidesPackage{copyrightbox}[2015/04/15 \space  v 0.1a]
  
 \RequirePackage{tikz}
 \RequirePackage{ifthen}
@@ -34,13 +38,16 @@
     \advance\CRB@xdiffl by -\tu@tmpa%
 }
 
-\newcommand{\CRB@setcopyrightfont}{%
+\newcommand{\CRB@setcopyrightfont}[1]{}
+\newcommand{\setcopyrightfont}[1]{\renewcommand{\CRB@setcopyrightfont}{#1}}
+\renewcommand{\CRB@setcopyrightfont}{%
 \footnotesize 
 \color{black!33}
-\sf
+\sffamily
 }
-
-\newcommand{\CRB@setcopyrightparagraphstyle}{\raggedright}
+\newcommand{\CRB@setcopyrightparagraphstyle}[1]{}
+\newcommand{\setcopyrightparstyle}[1]{\renewcommand{\CRB@setcopyrightparagraphstyle}{#1}}
+\renewcommand{\CRB@setcopyrightparagraphstyle}{\raggedright}
 
 \newcommand{\copyrightbox}[3][r]{%
 \begin{tikzpicture}%
@@ -65,7 +72,6 @@
 \end{tikzpicture}
 }
 
-\ProvidesPackage{copyrightbox}[2011/11/27 \space  v 0.1]
 \endinput
 
 %%%%%  ----- End definitions ----- %%%%%
@@ -85,3 +91,8 @@ which puts <text> positioned according to <placement> near <image>. E.g.
 \copyrightbox[l]
 		{\includegraphics[scale=0.5]{coin}}
 		{Image put in the public domain by the U.S. Mint.}
+
+Use 
+\setcopyrightfont{\small}
+\setcopyrightparstyle{\raggedleft}
+to change the visual appearance of the copyright note.

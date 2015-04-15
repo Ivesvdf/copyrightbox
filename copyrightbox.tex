@@ -1,11 +1,11 @@
+\RequirePackage{fixltx2e}
 \documentclass[pagesize=auto]{scrartcl}
 
-\usepackage{fixltx2e}
+\usepackage{blindtext}
 \usepackage{etex}
 \usepackage{lmodern}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
-\usepackage{amstext}
 \usepackage{array}
 \usepackage{xcolor}
 \usepackage{tikz}
@@ -29,7 +29,7 @@
 \addtokomafont{title}{\rmfamily}
 
 \title{The \pkg{copyrightbox} package\thanks{This manual corresponds to
-\pkg{copyrightbox}~v0.1, dated~Nov 27, 2011.}}
+\pkg{copyrightbox}~v0.1a, dated~Apr 15, 2015.}}
 \author{Thomas Fischer\thanks{\mail{thomas.fischer@t-fischer.net}}\\Ives van der
 Flaas\thanks{\mail{ives.vdf@gmail.com}}}
 \date{\today}
@@ -74,6 +74,7 @@ will also fit the copyright text.
 
 \clearpage
 \section{Examples}
+\setcounter{secnumdepth}{1}
 \subsection{Example 1}
 The command
 
@@ -138,31 +139,45 @@ produces:
 {Image created by the author.}
 \end{center}
 
+\setcounter{secnumdepth}{2}
 \section{Notes}
 
 \subsection{Changing the Font}
 It's possible to change every aspect of the font used in the copyright message
-by renewing the command \cmd{\CRB$@$setcopyrightfont}, for example: 
+using \cmd{\setcopyrightfont}, for example: 
 
+\begin{verbatim}
+\setcopyrightfont{\tiny\itshape}
+\end{verbatim}
+This can be placed anywhere in your \texttt{.tex} file and will
+typeset copyright notes in tiny italics:
+\begin{center}
+	\setcopyrightfont{\tiny\itshape}
+\copyrightbox[r] { \tikz \filldraw[fill=gray] (0,0) rectangle (1,2); }
+{Image created by the author.}
+\end{center}
+
+It is also possible to redefine the internal commands, which is
+not recommended. Still, here a short example:
 \begin{verbatim}
 \makeatletter
 \renewcommand{\CRB@setcopyrightfont}{%
 	\footnotesize 
 	\color{red!33}
-	\sc
+	\scshape
 }
 \makeatother
 
 \copyrightbox[r] { \tikz \filldraw[fill=green] (0,0) circle (2); }
 {Image created by the author.}
 \end{verbatim}
-can be placed anywhere in your .tex file and will generate the copyright notice in small caps in a reddish tint:
+This will generate the copyright notice in small caps in a reddish tint:
 \begin{center}
 \makeatletter
 \renewcommand{\CRB@setcopyrightfont}{%
 	\footnotesize 
 	\color{red!33}
-	\sc
+	\scshape
 }
 \makeatother
 
@@ -170,66 +185,58 @@ can be placed anywhere in your .tex file and will generate the copyright notice 
 {Image created by the author.}
 \end{center}
 
-Ofcourse, it's also possible to select a font using the New Font Selection
-System in \LaTeX{}2e, for example, to select Helvetica\footnote{This font might not be available on your system. } size
+Of course, it's also possible to select a font using the New Font Selection
+System in \LaTeXe, for example, to select Helvetica\footnote{This font might not be available on your system.} size
 4:
 
 \begin{verbatim}
-\makeatletter
-\renewcommand{\CRB@setcopyrightfont}{%
-\usefont{T1}{phv}{m}{n}\fontsize{4}{4}\selectfont
+\setcopyrightfont{%
+\usefont{T1}{phv}{m}{n}\fontsize{4}{5}\selectfont
 }
-\makeatother
 
 \copyrightbox[r] { \tikz \filldraw[fill=green] (0,0) circle (2); }
 {Image created by the author.}
 \end{verbatim}
 
 \begin{center}
-\makeatletter
-\renewcommand{\CRB@setcopyrightfont}{%
-\usefont{T1}{phv}{m}{n}\fontsize{4}{4}\selectfont
+\setcopyrightfont{%
+\usefont{T1}{phv}{m}{n}\fontsize{4}{5}\selectfont
 }
-\makeatother
 
 \copyrightbox[r] { \tikz \filldraw[fill=green] (0,0) circle (2); }
-{Image created by the author.}
+{Image created by the author.\blindtext}
 \end{center}
 
 \subsection{Justification}
 Although it's not exactly recommended, it is possible to place relatively
 large amounts of text near images. Long amounts of text are usually nicer to
-look at when justified, and to do so \cmd{\renewcommand}
-\cmd{\CRB@setcopyrightparagraphstyle} to something other than
-\cmd{\raggedright}, which is the default. 
+look at when justified, and to do so \cmd{\setcopyrightparstyle}
+to something other than \cmd{\raggedright}.
 
 Place
 
 \begin{verbatim}
-\makeatletter
-\renewcommand{\CRB@setcopyrightparagraphstyle}{%
+\setcopyrightparstyle{%
 % Return to justifying text
 \setlength{\rightskip}{0pt}
 \setlength{\leftskip}{0pt}
 }
 
-\makeatother
 \begin{center}
 	\copyrightbox[r]
 		{\includegraphics[scale=0.5]{coin}}
-      {This here image was put in the public domain some time ago by the U.S. Mint.}
+      {This here image was put in the public domain some time ago 
+      by the U.S. Mint.}
 \end{center}
 \end{verbatim}
 
 anywhere in your .tex file to produce:
-\makeatletter
-\renewcommand{\CRB@setcopyrightparagraphstyle}{%
+\setcopyrightparstyle{%
 % Return to justifying text
 \setlength{\rightskip}{0pt}
 \setlength{\leftskip}{0pt}
 }
 
-\makeatother
 \begin{center}
 	\copyrightbox[r]
 		{\includegraphics[scale=0.5]{coin}}
@@ -238,21 +245,37 @@ anywhere in your .tex file to produce:
 
 instead of 
 
-\makeatletter
-\renewcommand{\CRB@setcopyrightparagraphstyle}{%
-% Return to justifying text
+\setcopyrightparstyle{%
 \raggedright
 }
 
-\makeatother
 \begin{center}
 	\copyrightbox[r]
 		{\includegraphics[scale=0.5]{coin}}
       {This here image was put in the public domain some time ago by the U.S. Mint.}
 \end{center}
 
+Redefining the internal commands will work as well, but is not
+recommended:
+\begin{verbatim}
+\makeatletter
+\renewcommand{\CRB@setcopyrightparagraphstyle}{\raggedleft}
+\makeatother
+\begin{center}
+\copyrightbox[r] { \tikz \filldraw[fill=gray] (0,0) rectangle (1,2); }
+{There really isn't much to see here, i am sorry}
+\end{center}
+\end{verbatim}
+\makeatletter
+\renewcommand{\CRB@setcopyrightparagraphstyle}{\raggedleft}
+\makeatother
+\begin{center}
+\copyrightbox[r] { \tikz \filldraw[fill=gray] (0,0) rectangle (1,2); }
+{There really isn't much to see here, i am sorry}
+\end{center}
+
 \section{Bugs and Suggestions}
-Bugreports, suggestions and patches are welcome and can be emailed to
+Bugreports, suggestions and patches are welcome and can be mailed to
 \mail{ives.vdf@gmail.com}, or you can fork
 \url{https://github.com/Ivesvdf/copyrightbox} and send me a pull request
 through Github. 
