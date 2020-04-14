@@ -56,14 +56,14 @@
 \CRB@ydiff{ciimage.south}{ciimage.north}
 \CRB@xdiff{ciimage.west}{ciimage.east}
 \ifthenelse{\equal{#1}{r}}{%
-\node[inner sep=0pt,right=1ex of ciimage.south east,anchor=north west,rotate=90]%
-{\raggedleft\parbox{\the\CRB@ydiffl}{\CRB@setcopyrightparagraphstyle{}#3}};%
+\node[inner sep=0pt,right=1ex of ciimage.south east,above right]%
+{\rotatebox{90}{\raggedleft\parbox{\the\CRB@ydiffl}{\CRB@setcopyrightparagraphstyle{}#3}}};%
 }{%
 \ifthenelse{\equal{#1}{l}}{%
-\node[inner sep=2ex,right=1ex of ciimage.south west,anchor=south west,rotate=90]
+\node[inner sep=2ex,right=1ex of ciimage.south west,above left]
 % Separation needed to be 2ex otherwise letters like j would
 % cross into the image
-{\raggedleft\parbox{\the\CRB@ydiffl}{\CRB@setcopyrightparagraphstyle{}#3}};%
+{\rotatebox{90}{\raggedleft\parbox{\the\CRB@ydiffl}{\CRB@setcopyrightparagraphstyle{}#3}}};%
 }{%
 \node[inner sep=0pt,below=1ex of ciimage.south west,anchor=north west]%
 {\raggedleft\parbox{\the\CRB@xdiffl}{\CRB@setcopyrightparagraphstyle{}#3}};%
