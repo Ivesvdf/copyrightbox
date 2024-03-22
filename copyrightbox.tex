@@ -55,22 +55,20 @@ copyright notice relative to the image:
 \begin{quote}
 	\verb=\copyrightbox[=\meta{placement}\verb=]{=\meta{image}\verb=}{=\meta{text}\verb=}=
 \end{quote}
-Like usual the \verb=[=\meta{placement}\verb=]= parameter is optional, so this
-command can also be expressed as
-\begin{quote}
-	\verb=\copyrightbox{=\meta{image}\verb=}{=\meta{text}\verb=}=
-\end{quote}
-In which case the copyright notice will be placed to the right of the image.
 
 Allowed \meta{placement}s are
 \begin{description}
 	\item[\texttt{l}]The copyright notice is placed to the left of the image.
-	\item[\texttt{r}](Default) The copyright notice is placed to the right of the image.
+	\item[\texttt{r}]The copyright notice is placed to the right of the image.
+	                 This is also the default if this parameter is omitted, i.e.\ it is equivalent to
+	                 \begin{quote}
+	                 	\verb=\copyrightbox{=\meta{image}\verb=}{=\meta{text}\verb=}=
+	                 \end{quote}
 	\item[\texttt{b}]The copyright notice is placed below the image.
 \end{description}
 
-A \cmd{\copyrightbox} will be bigger than the image it encompasses, since it
-will also fit the copyright text.  
+Note that a \cmd{\copyrightbox} will be bigger than the image it encompasses, since it
+will also fit the copyright text.
 
 \clearpage
 \section{Examples}
