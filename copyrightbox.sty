@@ -38,16 +38,15 @@
     \advance\CRB@xdiffl by -\tu@tmpa%
 }
 
-\newcommand{\CRB@setcopyrightfont}[1]{}
-\newcommand{\setcopyrightfont}[1]{\renewcommand{\CRB@setcopyrightfont}{#1}}
-\renewcommand{\CRB@setcopyrightfont}{%
-\footnotesize 
+\newcommand{\CRB@setcopyrightfont}{%
+\footnotesize
 \color{black!33}
 \sffamily
 }
-\newcommand{\CRB@setcopyrightparagraphstyle}[1]{}
+\newcommand{\setcopyrightfont}[1]{\renewcommand{\CRB@setcopyrightfont}{#1}}
+
+\newcommand{\CRB@setcopyrightparagraphstyle}{\raggedright}
 \newcommand{\setcopyrightparstyle}[1]{\renewcommand{\CRB@setcopyrightparagraphstyle}{#1}}
-\renewcommand{\CRB@setcopyrightparagraphstyle}{\raggedright}
 
 \newcommand{\copyrightbox}[3][r]{%
 \begin{tikzpicture}%
@@ -57,16 +56,16 @@
 \CRB@xdiff{ciimage.west}{ciimage.east}
 \ifthenelse{\equal{#1}{r}}{%
 \node[inner sep=0pt,right=1ex of ciimage.south east,above right]%
-{\rotatebox{90}{\raggedleft\parbox{\the\CRB@ydiffl}{\CRB@setcopyrightparagraphstyle{}#3}}};%
+{\rotatebox{90}{\parbox{\the\CRB@ydiffl}{\CRB@setcopyrightparagraphstyle{}#3}}};
 }{%
 \ifthenelse{\equal{#1}{l}}{%
 \node[inner sep=2ex,right=1ex of ciimage.south west,above left]
 % Separation needed to be 2ex otherwise letters like j would
 % cross into the image
-{\rotatebox{90}{\raggedleft\parbox{\the\CRB@ydiffl}{\CRB@setcopyrightparagraphstyle{}#3}}};%
+{\rotatebox{90}{\parbox{\the\CRB@ydiffl}{\CRB@setcopyrightparagraphstyle{}#3}}};%
 }{%
 \node[inner sep=0pt,below=1ex of ciimage.south west,anchor=north west]%
-{\raggedleft\parbox{\the\CRB@xdiffl}{\CRB@setcopyrightparagraphstyle{}#3}};%
+{\parbox{\the\CRB@xdiffl}{\CRB@setcopyrightparagraphstyle{}#3}};%
 }
 }
 \end{tikzpicture}
